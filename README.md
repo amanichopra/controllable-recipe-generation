@@ -1,1 +1,1 @@
-# controllable-recipe-generation
+# Controllable Recipe Generation
