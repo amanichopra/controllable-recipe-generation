@@ -11,6 +11,7 @@ import argparse
 import sys
 
 def get_df_from_gcs_blob(blob, bucket='recipe-data-bucket'):
+    # START: COPIED FROM https://github.com/googleapis/python-storage/blob/HEAD/samples/snippets/storage_fileio_write_read.py
     storage_client = storage.Client()
     bucket = storage_client.get_bucket(bucket)
 
@@ -20,6 +21,7 @@ def get_df_from_gcs_blob(blob, bucket='recipe-data-bucket'):
     blob = StringIO(blob)  #tranform bytes to string here
     df = pd.read_csv(blob)
     return df
+    # END: COPIED FROM https://github.com/googleapis/python-storage/blob/HEAD/samples/snippets/storage_fileio_write_read.py
 
 def save_model(path, epoch, mod, opt, running_loss):
    torch.save({
@@ -29,6 +31,7 @@ def save_model(path, epoch, mod, opt, running_loss):
             'loss': running_loss,
             }, path)
 
+# START: COPIED FROM https://www.kaggle.com/code/kreeshrajani/fine-tune-t5-for-conversational-model
 class T5Dataset:
   def __init__(self, inps, outs, tokenizer, inp_max_len, out_max_len):   
     self.inps = inps
@@ -78,7 +81,9 @@ class T5Dataset:
         }
         
     return out 
+# END: COPIED FROM https://www.kaggle.com/code/kreeshrajani/fine-tune-t5-for-conversational-model
 
+# START: PARTIALLY COPIED FROM https://github.com/Shivanandroy/T5-Finetuning-PyTorch
 def train(tokenizer, model, device, loader, optimizer, fp16=True):
     losses = []
     if fp16: model.half()
@@ -124,6 +129,7 @@ def test(tokenizer, model, device, loader, fp16=True):
             if _%10 == 0:
                 wandb.log({"Validation Loss": loss.item()})
     return losses
+# END: PARTIALLY COPIED FROM https://github.com/Shivanandroy/T5-Finetuning-PyTorch
 
 def main(args):
     
