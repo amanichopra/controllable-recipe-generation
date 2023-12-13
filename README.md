@@ -12,4 +12,6 @@ This repository contains all the code used to train the recipe generation models
 - `evaluate.ipynb`: notebook to 1) generate t5 model outputs using different numbers of beams during decoding and 2) run evaluation on a variety of metrics.
 - `demo.ipynb`: demo notebook using ipywidgets to allow users to 1) view the generated results on the train/test splits across the baseline and t5 models and 2) run inference on custom input.
 
+*You can access the final T5 model [here](https://drive.google.com/drive/folders/1AHEgvAkE9JpBmOtIKqqHAb7MO5unwzwD?usp=sharing). This model has been fine-tuned using only caloric constraints in the input. Training a model using additional macronutrient constraints is a work in progress.*
+
 
